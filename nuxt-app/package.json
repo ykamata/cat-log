@@ -13,6 +13,7 @@
     "dev:backend": "ts-node server/index.ts"
   },
   "dependencies": {
+    "@prisma/client": "^6.8.2",
     "nuxt": "^3.17.4",
     "vue": "^3.5.14",
     "vue-router": "^4.5.1"
@@ -25,6 +26,7 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",
     "prettier": "^3.5.3",
+    "prisma": "^6.8.2",
     "ts-node": "^10.9.2"
   }
 }

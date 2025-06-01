@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Cat {
+  id    Int     @id @default(autoincrement())
+  name  String
+  meals MealRecord[]
+}
+
+model FoodType {
+  id              Int      @id @default(autoincrement())
+  name            String   @unique
+  caloriesPerGram Float
+  meals           MealRecord[]
+}
+
+model MealRecord {
+  id            Int      @id @default(autoincrement())
+  timestamp     DateTime @default(now())
+  amountGrams   Float
+  calories      Float
+  catId         Int
+  cat           Cat      @relation(fields: [catId], references: [id])
+  foodTypeId    Int
+  foodType      FoodType @relation(fields: [foodTypeId], references: [id])
+
+  @@index([catId])
+  @@index([foodTypeId])
+}
